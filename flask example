@@ -1,0 +1,12 @@
+from flask import flask
+app = Flask(_name_)
+
+#displays 'Hello World" when accessing '/' after ip
+
+@app.route('/')
+def index():
+  return 'Hello World'
+  
+#sets port to 5000
+if _name_ == '_main_':
+  app.run(debug=True, host='0.0.0.0')
