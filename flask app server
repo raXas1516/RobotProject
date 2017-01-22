@@ -1,49 +1,10 @@
 from flask import Flask
 app = Flask(__name__)
 
-#displays 'Hello World" when accessing '/' after ip
-
-@app.route('/up')
-def up():
-        return 'up'
-        
-@app.route('/down')
-def down():
-        return 'down'
-
-@app.route('/right')
-def right():
-        return 'right'
-
-@app.route('/left')
-def left():
-        return 'left'
-        
-@app.route('/stop')
-def stop():
-        return 'stop'
-
-@app.route('/center')
-def center():
-        return 'center'
-
-@app.route('/upleft')
-def upleft():
-        return 'upleft'
-
-@app.route('/upright')
-def upright():
-        return 'upright'
-
-@app.route('/downright')
-def downright():
-        return 'downright'
-
-@app.route('/downleft')
-def downleft():
-        return 'downleft'
-        
+@app.route('/<direction>/<angle>/<distance>')
+def up(direction, angle, distance):
+        "send variables to arduino"
+        return 'connected'
   
-#sets port to 5000
 if __name__ == '__main__':
         app.run(debug=True, host='0.0.0.0')
