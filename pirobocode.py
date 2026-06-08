@@ -1,39 +1,40 @@
-from nanpy import ArduinoApi #imports nanpy
-from time import sleep #imports sleep
-from flask import Flask #imports flask
+from nanpy import ArduinoApi  # imports nanpy
+from nanpy.serialmanager import SerialManager  # serial connection helper for nanpy
+from flask import Flask, abort  # imports flask
 
 app = Flask(__name__)
 
-try: #attempts to connect to Arduino
-    connection = SerialManager(device='/dev/USB0') #stores the address of the arduino in connection
+# Map each named direction to the integer code understood by the Arduino.
+DIRECTIONS = {
+    'centre': 0,
+    'up': 1,
+    'upright': 2,
+    'right': 3,
+    'downright': 4,
+    'down': 5,
+    'downleft': 6,
+    'left': 7,
+    'upleft': 8,
+    'stop': 9,
+}
+
+try:  # attempts to connect to Arduino
+    connection = SerialManager(device='/dev/USB0')  # stores the address of the arduino
     a = ArduinoApi(connection=connection)
-except:
+except Exception:
+    connection = None
+    a = None
     print('Failed to connect with Arduino')
-direction = ['']
+
 
 @app.route('/<direction>')
-def int comArduino(direction):
-    if (direction == 'centre'):
-        dirNum=0
-    elif (direction == 'up'):
-        dirNum=1
-    elif (direction == 'upright'):
-        dirNum=2
-    elif (direction == 'right'):
-        dirNum=3
-    elif (direction == 'downright'):
-        dirNum=4
-    elif (direction == 'down'):
-        dirNum=5
-    elif (direction == 'downleft'):
-        dirNum=6
-    elif (direction == 'left'):
-        dirNum=7
-    elif (direction == 'upleft'):
-        dirNum=8
-    elif (direction == 'stop'):
-        dirNum=9
-    return dirNum
+def com_arduino(direction):
+    if direction not in DIRECTIONS:
+        abort(404)  # unknown direction
+    dir_num = DIRECTIONS[direction]
+    # TODO: forward dir_num to the Arduino once the firmware protocol is defined.
+    return str(dir_num)
+
 
 if __name__ == '__main__':
-        app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')

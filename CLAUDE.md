@@ -36,8 +36,7 @@ and continues to start.
 
 ## Notes for future work
 
-- `pirobocode.py` currently does not run as written: `SerialManager` is used but
-  never imported (it lives in `nanpy.serialmanager`), the route handler is
-  declared `def int comArduino(...)` which is invalid Python, and the handler
-  returns an `int` where Flask requires a string/Response. Expect to fix these
-  before the server will start.
+- The Arduino firmware is not in this repo. `com_arduino` currently maps a
+  direction to its integer code and returns it, but does not yet forward the
+  code to the Arduino over the serial connection — that step depends on the
+  firmware's protocol and is marked with a `TODO` in `pirobocode.py`.
