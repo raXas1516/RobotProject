@@ -1,0 +1,22 @@
+{
+  "_comment": "Sample of scraped high-volume Google/Amazon search keywords. volume = approximate monthly searches. In production this file is refreshed from a keyword-scraping job.",
+  "keywords": [
+    { "keyword": "rose gold pendant necklace", "volume": 49500 },
+    { "keyword": "stainless steel necklace", "volume": 40500 },
+    { "keyword": "rose gold necklace for women", "volume": 33100 },
+    { "keyword": "tarnish free jewelry", "volume": 18100 },
+    { "keyword": "waterproof necklace", "volume": 14800 },
+    { "keyword": "hypoallergenic necklace", "volume": 12100 },
+    { "keyword": "316l stainless steel pendant", "volume": 8100 },
+    { "keyword": "minimalist pendant necklace", "volume": 9900 },
+    { "keyword": "pvd coated jewelry", "volume": 2400 },
+    { "keyword": "gift for her necklace", "volume": 27100 },
+    { "keyword": "everyday necklace", "volume": 6600 },
+    { "keyword": "dainty rose gold necklace", "volume": 5400 },
+    { "keyword": "non tarnish necklace", "volume": 4400 },
+    { "keyword": "stainless steel bracelet", "volume": 33100 },
+    { "keyword": "waterproof bracelet", "volume": 8100 },
+    { "keyword": "gold plated ring", "volume": 22200 },
+    { "keyword": "anti tarnish ring", "volume": 3600 }
+  ]
+}

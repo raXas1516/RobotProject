@@ -1,0 +1,76 @@
+{
+  "_comment": "Feature-to-benefit knowledge base. Each rule matches against a parsed spec (its key and/or value) and emits a customer-facing benefit. Rules are evaluated highest-priority first. 'match' supports key_contains, value_contains, and text_contains (matches the combined 'key value'); all are lowercased substring checks and combined with AND.",
+  "rules": [
+    {
+      "id": "steel-316l",
+      "priority": 100,
+      "match": { "value_contains": "316l" },
+      "benefit": "Surgical-grade 316L stainless steel resists rust, scratches, and tarnish for worry-free daily wear",
+      "tags": ["durability", "skin-safe"]
+    },
+    {
+      "id": "stainless-steel",
+      "priority": 60,
+      "match": { "value_contains": "stainless steel" },
+      "benefit": "Solid stainless steel construction stays bright and tarnish-resistant through everyday wear",
+      "tags": ["durability"]
+    },
+    {
+      "id": "pvd-coating",
+      "priority": 90,
+      "match": { "value_contains": "pvd" },
+      "benefit": "Advanced PVD coating bonds the finish to the metal for a long-lasting, mirror-like luxury shine that won't flake or fade",
+      "tags": ["finish", "durability"]
+    },
+    {
+      "id": "rose-gold",
+      "priority": 80,
+      "match": { "value_contains": "rose gold" },
+      "benefit": "Warm rose gold tone flatters every skin tone and adds an elegant, premium accent to any outfit",
+      "tags": ["aesthetic"]
+    },
+    {
+      "id": "18k-gold",
+      "priority": 85,
+      "match": { "value_contains": "18k" },
+      "benefit": "Rich 18k gold plating delivers a high-end look at a fraction of the price of solid gold",
+      "tags": ["aesthetic", "value"]
+    },
+    {
+      "id": "waterproof",
+      "priority": 75,
+      "match": { "text_contains": "waterproof" },
+      "benefit": "Fully waterproof so you can shower, swim, and sweat without ever taking it off",
+      "tags": ["convenience", "durability"]
+    },
+    {
+      "id": "hypoallergenic",
+      "priority": 78,
+      "match": { "text_contains": "hypoallergenic" },
+      "benefit": "Hypoallergenic and nickel-free, gentle even on the most sensitive skin",
+      "tags": ["skin-safe"]
+    },
+    {
+      "id": "nickel-free",
+      "priority": 77,
+      "match": { "value_contains": "nickel-free" },
+      "benefit": "Nickel-free formulation prevents skin irritation and green marks",
+      "tags": ["skin-safe"]
+    },
+    {
+      "id": "weight-light",
+      "priority": 30,
+      "match": { "key_contains": "weight" },
+      "benefit": "Lightweight and comfortable enough to wear all day, every day",
+      "tags": ["comfort"]
+    },
+    {
+      "id": "chain-length",
+      "priority": 25,
+      "match": { "key_contains": "length" },
+      "benefit": "Thoughtfully sized to layer beautifully or stand alone as a statement piece",
+      "tags": ["styling"]
+    }
+  ],
+  "fallback_template": "Features {key_lower} of {value} for added quality and value"
+}
