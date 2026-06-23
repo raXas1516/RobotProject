@@ -29,6 +29,11 @@ def _parse_args(argv: List[str]) -> argparse.Namespace:
     parser.add_argument("--description", default="", help="Optional existing description")
     parser.add_argument("--sku", default="", help="Optional SKU")
     parser.add_argument(
+        "--category",
+        default="",
+        help="Optional product category (e.g. jewelry, apparel, beauty, home) to scope keyword matching",
+    )
+    parser.add_argument(
         "--platform",
         nargs="+",
         default=None,
@@ -48,10 +53,17 @@ def _build_product(args: argparse.Namespace) -> Product:
             raw_specs=data.get("raw_specs", data.get("specs", "")),
             description=data.get("description", ""),
             sku=data.get("sku", ""),
+            category=data.get("category", ""),
         )
     if not args.title:
         raise SystemExit("error: --title is required (or use --json)")
-    return Product(title=args.title, raw_specs=args.specs, description=args.description, sku=args.sku)
+    return Product(
+        title=args.title,
+        raw_specs=args.specs,
+        description=args.description,
+        sku=args.sku,
+        category=args.category,
+    )
 
 
 def main(argv: List[str] | None = None) -> int:

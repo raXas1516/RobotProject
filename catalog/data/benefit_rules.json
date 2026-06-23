@@ -1,75 +1,359 @@
 {
-  "_comment": "Feature-to-benefit knowledge base. Each rule matches against a parsed spec (its key and/or value) and emits a customer-facing benefit. Rules are evaluated highest-priority first. 'match' supports key_contains, value_contains, and text_contains (matches the combined 'key value'); all are lowercased substring checks and combined with AND.",
+  "_comment": "Feature-to-benefit knowledge base. Each rule matches against a parsed spec (its key and/or value) and emits a customer-facing benefit. Rules are evaluated highest-priority first. 'match' supports key_contains, value_contains, and text_contains (matches the combined 'key value'); all are lowercased substring checks and combined with AND. Substring matches are chosen to avoid false positives across categories.",
   "rules": [
     {
       "id": "steel-316l",
       "priority": 100,
       "match": { "value_contains": "316l" },
       "benefit": "Surgical-grade 316L stainless steel resists rust, scratches, and tarnish for worry-free daily wear",
-      "tags": ["durability", "skin-safe"]
+      "tags": ["durability", "skin-safe", "jewelry"]
     },
     {
-      "id": "stainless-steel",
-      "priority": 60,
-      "match": { "value_contains": "stainless steel" },
-      "benefit": "Solid stainless steel construction stays bright and tarnish-resistant through everyday wear",
-      "tags": ["durability"]
+      "id": "sterling-925",
+      "priority": 95,
+      "match": { "value_contains": "925" },
+      "benefit": "Genuine 925 sterling silver delivers timeless shine and lasting value, hallmarked for authenticity",
+      "tags": ["quality", "jewelry"]
+    },
+    {
+      "id": "sterling-word",
+      "priority": 94,
+      "match": { "value_contains": "sterling" },
+      "benefit": "Solid sterling silver looks luxurious and is built to be treasured for years",
+      "tags": ["quality", "jewelry"]
     },
     {
       "id": "pvd-coating",
       "priority": 90,
       "match": { "value_contains": "pvd" },
       "benefit": "Advanced PVD coating bonds the finish to the metal for a long-lasting, mirror-like luxury shine that won't flake or fade",
-      "tags": ["finish", "durability"]
+      "tags": ["finish", "durability", "jewelry"]
     },
     {
-      "id": "rose-gold",
-      "priority": 80,
-      "match": { "value_contains": "rose gold" },
-      "benefit": "Warm rose gold tone flatters every skin tone and adds an elegant, premium accent to any outfit",
-      "tags": ["aesthetic"]
+      "id": "gold-filled",
+      "priority": 88,
+      "match": { "value_contains": "gold-filled" },
+      "benefit": "Thick gold-filled layer wears like solid gold and resists fading far longer than standard plating",
+      "tags": ["quality", "jewelry"]
+    },
+    {
+      "id": "moissanite",
+      "priority": 86,
+      "match": { "value_contains": "moissanite" },
+      "benefit": "Brilliant lab-grown moissanite rivals diamond sparkle with more fire, ethically sourced and conflict-free",
+      "tags": ["aesthetic", "value", "jewelry"]
     },
     {
       "id": "18k-gold",
       "priority": 85,
       "match": { "value_contains": "18k" },
       "benefit": "Rich 18k gold plating delivers a high-end look at a fraction of the price of solid gold",
-      "tags": ["aesthetic", "value"]
+      "tags": ["aesthetic", "value", "jewelry"]
     },
     {
-      "id": "waterproof",
-      "priority": 75,
-      "match": { "text_contains": "waterproof" },
-      "benefit": "Fully waterproof so you can shower, swim, and sweat without ever taking it off",
-      "tags": ["convenience", "durability"]
+      "id": "rose-gold",
+      "priority": 80,
+      "match": { "value_contains": "rose gold" },
+      "benefit": "Warm rose gold tone flatters every skin tone and adds an elegant, premium accent to any outfit",
+      "tags": ["aesthetic", "jewelry"]
     },
     {
       "id": "hypoallergenic",
       "priority": 78,
       "match": { "text_contains": "hypoallergenic" },
       "benefit": "Hypoallergenic and nickel-free, gentle even on the most sensitive skin",
-      "tags": ["skin-safe"]
+      "tags": ["skin-safe", "jewelry"]
     },
     {
       "id": "nickel-free",
       "priority": 77,
       "match": { "value_contains": "nickel-free" },
       "benefit": "Nickel-free formulation prevents skin irritation and green marks",
-      "tags": ["skin-safe"]
+      "tags": ["skin-safe", "jewelry"]
     },
     {
-      "id": "weight-light",
-      "priority": 30,
-      "match": { "key_contains": "weight" },
-      "benefit": "Lightweight and comfortable enough to wear all day, every day",
+      "id": "titanium",
+      "priority": 72,
+      "match": { "value_contains": "titanium" },
+      "benefit": "Aerospace-grade titanium is featherlight yet virtually indestructible and completely skin-safe",
+      "tags": ["durability", "skin-safe", "jewelry"]
+    },
+    {
+      "id": "cubic-zirconia",
+      "priority": 65,
+      "match": { "value_contains": "cubic zirconia" },
+      "benefit": "Hand-set cubic zirconia stones catch the light with diamond-like brilliance",
+      "tags": ["aesthetic", "jewelry"]
+    },
+    {
+      "id": "stainless-steel",
+      "priority": 60,
+      "match": { "value_contains": "stainless steel" },
+      "benefit": "Solid stainless steel construction stays bright and tarnish-resistant through everyday use",
+      "tags": ["durability"]
+    },
+    {
+      "id": "enamel",
+      "priority": 55,
+      "match": { "value_contains": "enamel" },
+      "benefit": "Hard-fired enamel keeps colours vivid and chip-resistant wash after wash",
+      "tags": ["finish", "jewelry"]
+    },
+    {
+      "id": "adjustable",
+      "priority": 40,
+      "match": { "text_contains": "adjustable" },
+      "benefit": "Fully adjustable for a comfortable, customised fit on nearly anyone",
+      "tags": ["fit"]
+    },
+    {
+      "id": "gift-ready",
+      "priority": 35,
+      "match": { "text_contains": "gift" },
+      "benefit": "Arrives in premium gift-ready packaging, perfect for birthdays, anniversaries, and the holidays",
+      "tags": ["gifting"]
+    },
+
+    {
+      "id": "merino-wool",
+      "priority": 84,
+      "match": { "value_contains": "merino" },
+      "benefit": "Naturally temperature-regulating merino wool keeps you warm in the cold, cool in the heat, and odour-free for days",
+      "tags": ["comfort", "apparel"]
+    },
+    {
+      "id": "organic-cotton",
+      "priority": 83,
+      "match": { "value_contains": "organic cotton" },
+      "benefit": "Certified organic cotton is breathable, ultra-soft, and grown without harmful pesticides",
+      "tags": ["comfort", "sustainable", "apparel"]
+    },
+    {
+      "id": "memory-foam",
+      "priority": 76,
+      "match": { "value_contains": "memory foam" },
+      "benefit": "Pressure-relieving memory foam moulds to your shape for all-day cloud-like comfort",
       "tags": ["comfort"]
     },
     {
-      "id": "chain-length",
+      "id": "upf",
+      "priority": 74,
+      "match": { "text_contains": "upf" },
+      "benefit": "Built-in UPF sun protection shields your skin from harmful UV rays all day long",
+      "tags": ["protection", "apparel"]
+    },
+    {
+      "id": "moisture-wicking",
+      "priority": 73,
+      "match": { "text_contains": "moisture-wicking" },
+      "benefit": "Moisture-wicking fabric pulls sweat away from the skin to keep you dry and comfortable through any workout",
+      "tags": ["performance", "apparel"]
+    },
+    {
+      "id": "recycled-material",
+      "priority": 70,
+      "match": { "value_contains": "recycled" },
+      "benefit": "Made with recycled materials to reduce environmental impact without compromising quality",
+      "tags": ["sustainable"]
+    },
+    {
+      "id": "non-slip",
+      "priority": 68,
+      "match": { "text_contains": "non-slip" },
+      "benefit": "Slip-resistant grip keeps you steady and safe on wet or smooth surfaces",
+      "tags": ["safety", "apparel"]
+    },
+    {
+      "id": "breathable",
+      "priority": 58,
+      "match": { "text_contains": "breathable" },
+      "benefit": "Breathable construction promotes airflow to keep you cool and fresh all day",
+      "tags": ["comfort", "apparel"]
+    },
+    {
+      "id": "cotton",
+      "priority": 52,
+      "match": { "value_contains": "cotton" },
+      "benefit": "Soft, breathable cotton feels great against the skin and only gets cosier with every wash",
+      "tags": ["comfort", "apparel"]
+    },
+    {
+      "id": "machine-washable",
+      "priority": 48,
+      "match": { "text_contains": "machine wash" },
+      "benefit": "Machine washable for effortless, low-maintenance care",
+      "tags": ["convenience"]
+    },
+
+    {
+      "id": "hyaluronic-acid",
+      "priority": 88,
+      "match": { "value_contains": "hyaluronic" },
+      "benefit": "Hydrating hyaluronic acid plumps and quenches skin, locking in moisture for a dewy, youthful glow",
+      "tags": ["skincare"]
+    },
+    {
+      "id": "vitamin-c",
+      "priority": 87,
+      "match": { "value_contains": "vitamin c" },
+      "benefit": "Brightening vitamin C evens skin tone and fades dark spots for a radiant, healthy-looking complexion",
+      "tags": ["skincare"]
+    },
+    {
+      "id": "spf",
+      "priority": 86,
+      "match": { "text_contains": "spf" },
+      "benefit": "Broad-spectrum SPF defends against UVA/UVB rays to prevent premature ageing and sun damage",
+      "tags": ["skincare", "protection"]
+    },
+    {
+      "id": "retinol",
+      "priority": 85,
+      "match": { "value_contains": "retinol" },
+      "benefit": "Dermatologist-favourite retinol smooths fine lines and boosts cell turnover for firmer, fresher skin",
+      "tags": ["skincare"]
+    },
+    {
+      "id": "niacinamide",
+      "priority": 80,
+      "match": { "value_contains": "niacinamide" },
+      "benefit": "Niacinamide minimises the look of pores and balances oil for a smoother, clearer complexion",
+      "tags": ["skincare"]
+    },
+    {
+      "id": "dermatologist-tested",
+      "priority": 71,
+      "match": { "text_contains": "dermatologist" },
+      "benefit": "Dermatologist-tested and suitable for sensitive skin, so you can use it with total confidence",
+      "tags": ["skincare", "skin-safe"]
+    },
+    {
+      "id": "vegan",
+      "priority": 64,
+      "match": { "text_contains": "vegan" },
+      "benefit": "100% vegan and cruelty-free, formulated without any animal-derived ingredients",
+      "tags": ["clean", "ethical"]
+    },
+    {
+      "id": "cruelty-free",
+      "priority": 63,
+      "match": { "text_contains": "cruelty-free" },
+      "benefit": "Never tested on animals, certified cruelty-free for guilt-free beauty",
+      "tags": ["ethical"]
+    },
+    {
+      "id": "paraben-free",
+      "priority": 62,
+      "match": { "text_contains": "paraben-free" },
+      "benefit": "Free from parabens and harsh additives, gentle enough for everyday use",
+      "tags": ["clean"]
+    },
+    {
+      "id": "sulfate-free",
+      "priority": 61,
+      "match": { "text_contains": "sulfate-free" },
+      "benefit": "Sulfate-free formula cleanses without stripping natural moisture",
+      "tags": ["clean"]
+    },
+    {
+      "id": "fragrance-free",
+      "priority": 59,
+      "match": { "text_contains": "fragrance-free" },
+      "benefit": "Fragrance-free and non-irritating, ideal for sensitive or reactive skin",
+      "tags": ["clean", "skin-safe"]
+    },
+
+    {
+      "id": "noise-cancelling",
+      "priority": 82,
+      "match": { "text_contains": "noise cancel" },
+      "benefit": "Active noise cancellation silences the world around you for total immersion in your music or calls",
+      "tags": ["electronics"]
+    },
+    {
+      "id": "battery-life",
+      "priority": 79,
+      "match": { "key_contains": "battery" },
+      "benefit": "Long-lasting battery keeps you powered all day on a single charge, so you never get caught flat",
+      "tags": ["electronics"]
+    },
+    {
+      "id": "fast-charging",
+      "priority": 75,
+      "match": { "text_contains": "fast charg" },
+      "benefit": "Fast charging delivers hours of use from just minutes on the cable",
+      "tags": ["electronics", "convenience"]
+    },
+    {
+      "id": "usb-c",
+      "priority": 69,
+      "match": { "text_contains": "usb-c" },
+      "benefit": "Universal USB-C charging means one cable for all your devices and faster, reversible connections",
+      "tags": ["electronics", "convenience"]
+    },
+    {
+      "id": "bluetooth",
+      "priority": 67,
+      "match": { "text_contains": "bluetooth" },
+      "benefit": "Seamless Bluetooth pairing connects instantly and keeps a stable, wire-free signal across the room",
+      "tags": ["electronics"]
+    },
+    {
+      "id": "water-resistant",
+      "priority": 66,
+      "match": { "text_contains": "water resistant" },
+      "benefit": "Water-resistant design shrugs off splashes, rain, and sweat for worry-free use anywhere",
+      "tags": ["durability", "electronics"]
+    },
+    {
+      "id": "bpa-free",
+      "priority": 56,
+      "match": { "text_contains": "bpa-free" },
+      "benefit": "BPA-free and food-safe, so what you drink and eat stays pure and healthy",
+      "tags": ["safety", "home"]
+    },
+    {
+      "id": "dishwasher-safe",
+      "priority": 50,
+      "match": { "text_contains": "dishwasher" },
+      "benefit": "Dishwasher safe for quick, effortless cleanup",
+      "tags": ["convenience", "home"]
+    },
+    {
+      "id": "energy-efficient",
+      "priority": 49,
+      "match": { "text_contains": "energy" },
+      "benefit": "Energy-efficient design lowers your bills while reducing your carbon footprint",
+      "tags": ["sustainable", "home"]
+    },
+    {
+      "id": "warranty",
+      "priority": 30,
+      "match": { "key_contains": "warranty" },
+      "benefit": "Backed by a manufacturer warranty for complete peace of mind",
+      "tags": ["trust"]
+    },
+
+    {
+      "id": "weight-light",
+      "priority": 28,
+      "match": { "key_contains": "weight" },
+      "benefit": "Lightweight and comfortable enough to use all day, every day",
+      "tags": ["comfort"]
+    },
+    {
+      "id": "waterproof",
+      "priority": 27,
+      "match": { "text_contains": "waterproof" },
+      "benefit": "Fully waterproof so you can shower, swim, and sweat without ever taking it off",
+      "tags": ["convenience", "durability"]
+    },
+    {
+      "id": "length",
       "priority": 25,
       "match": { "key_contains": "length" },
       "benefit": "Thoughtfully sized to layer beautifully or stand alone as a statement piece",
-      "tags": ["styling"]
+      "tags": ["styling", "jewelry"]
     }
   ],
   "fallback_template": "Features {key_lower} of {value} for added quality and value"

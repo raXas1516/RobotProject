@@ -54,6 +54,21 @@ class SEOTests(unittest.TestCase):
         product = Product(title="Wooden Garden Bench")
         self.assertEqual(self.seo.match_keywords(product), [])
 
+    def test_category_scopes_keyword_matches(self):
+        # A beauty product should only match beauty keywords, not jewelry ones
+        # that happen to share generic tokens.
+        product = Product(title="Brightening Vitamin C Face Serum", category="beauty")
+        matches = self.seo.match_keywords(product)
+        self.assertTrue(matches)
+        self.assertTrue(any("vitamin c" in m.keyword for m in matches))
+        # No jewelry keyword should leak into a beauty product's matches.
+        self.assertFalse(any("necklace" in m.keyword or "ring" in m.keyword for m in matches))
+
+    def test_no_category_searches_all(self):
+        # Backward compatible: with no category set, the full pool is searched.
+        product = Product(title="Stainless Steel Rose Gold Pendant")
+        self.assertTrue(self.seo.match_keywords(product))
+
 
 class BenefitTests(unittest.TestCase):
     def setUp(self):
@@ -81,6 +96,20 @@ class BenefitTests(unittest.TestCase):
         benefit = self.converter.benefit_for("Origin", "Italy")
         self.assertIsNotNone(benefit)
         self.assertIn("Italy", benefit.text)
+
+    def test_cross_category_benefits(self):
+        # Spot-check the expanded multi-category knowledge base.
+        cases = {
+            ("Active", "Vitamin C 15%"): "vitamin c",
+            ("Hydration", "Hyaluronic Acid"): "hyaluronic acid",
+            ("Material", "Merino Wool"): "merino wool",
+            ("Feature", "Active Noise Cancelling"): "noise cancellation",
+            ("Battery", "40 hours"): "battery",
+        }
+        for (key, value), expected in cases.items():
+            benefit = self.converter.benefit_for(key, value)
+            self.assertIsNotNone(benefit, f"{key}={value} produced no benefit")
+            self.assertIn(expected, benefit.text.lower(), f"{key}={value}")
 
     def test_convert_dedupes(self):
         specs = {"a": "316L Stainless Steel", "b": "316L Stainless Steel"}

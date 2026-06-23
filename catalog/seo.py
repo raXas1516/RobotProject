@@ -29,9 +29,15 @@ class SEOEnricher:
     """Matches products to scraped search keywords and builds SEO titles."""
 
     def __init__(self, keywords: Iterable[dict]):
-        # Store as (keyword, volume, token_set) tuples for fast scoring.
+        # Store as (keyword, volume, token_set, category) tuples for fast scoring.
+        # An empty category means the keyword is global (applies to any product).
         self._keywords = [
-            (kw["keyword"], int(kw["volume"]), set(_tokenize(kw["keyword"])))
+            (
+                kw["keyword"],
+                int(kw["volume"]),
+                set(_tokenize(kw["keyword"])),
+                str(kw.get("category", "")).lower(),
+            )
             for kw in keywords
             if kw.get("keyword")
         ]
@@ -44,9 +50,14 @@ class SEOEnricher:
     def match_keywords(self, product: Product, min_relevance: float = 0.5) -> List[KeywordMatch]:
         """Return keywords relevant to the product, ranked by demand x fit."""
         product_tokens = set(_tokenize(product.search_text()))
+        product_category = (product.category or "").lower()
         matches: List[KeywordMatch] = []
-        for keyword, volume, kw_tokens in self._keywords:
+        for keyword, volume, kw_tokens, category in self._keywords:
             if not kw_tokens:
+                continue
+            # When the product declares a category, only consider keywords in
+            # that category (plus uncategorised/global keywords).
+            if product_category and category and category != product_category:
                 continue
             overlap = kw_tokens & product_tokens
             relevance = len(overlap) / len(kw_tokens)

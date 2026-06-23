@@ -20,6 +20,7 @@ class Product:
     raw_specs: str = ""
     description: str = ""
     sku: str = ""
+    category: str = ""  # optional; when set, keyword matching is scoped to it
 
     def search_text(self) -> str:
         """Text used for keyword matching: title + description + specs."""
